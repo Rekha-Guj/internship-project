@@ -15,10 +15,13 @@ def browser_init(context):
     context.driver.implicitly_wait(4)
 
 
+
+
 def before_scenario(context, scenario):
     print('\nStarted scenario: ', scenario.name)
     browser_init(context)
 
+    context.driver = webdriver.Chrome()
 
 def before_step(context, step):
     print('\nStarted step: ', step)
@@ -31,3 +34,5 @@ def after_step(context, step):
 
 def after_scenario(context, feature):
     context.driver.quit()
+
+
