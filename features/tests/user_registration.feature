@@ -1,6 +1,6 @@
 # Created by rekhagujalwar at 7/16/25
 
-Feature: # User Registration
+Feature:  User Registration
 
   Scenario: # Enter the user details to get registered
     Given Open the Registration page

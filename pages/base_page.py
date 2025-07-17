@@ -27,13 +27,13 @@ class BasePage:
         self.wait.until(
             EC.visibility_of_element_located(locator),
             message=f'Element by {locator} not visible'
-        ).click()
+        )
 
     def wait_for_element_disappear(self, *locator):
         self.wait.until(
             EC.invisibility_of_element_located(locator),
             message=f'Element by {locator} still visible'
-        ).click()
+        )
 
     def wait_for_url_contains(self, partial_url):
         self.wait.until(EC.url_contains(partial_url), message=f'Expected {partial_url} not in url')
