@@ -22,17 +22,17 @@ class RegistrationPage(BasePage):
 
     def open(self):
         self.driver.get(self.url)
-        time.sleep(2)
+        time.sleep(10)
 
     def fill_registration_form(self):
         self.input_text('test rek3 careerist',  *self.USER_NAME)
-        time.sleep(1)
+        time.sleep(2)
         self.input_text('+951 test careerist', *self.PHONE_NUMBER)
-        time.sleep(1)
+        time.sleep(2)
         self.input_text('rek3@gmail.com', *self.EMAIL)
-        time.sleep(1)
+        time.sleep(2)
         self.input_text('rek3password', *self.PASSWORD)
-        time.sleep(1)
+        time.sleep(2)
         self.input_text('Test', *self.COMPANY_NAME)
         time.sleep(1)
 
