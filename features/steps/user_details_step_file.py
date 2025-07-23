@@ -1,7 +1,7 @@
 from behave import given, when, then
 from app.application import Application
 from pages.registration_page import RegistrationPage
-from pages.login_page import LoginPage
+
 
 # User registration
 
@@ -20,24 +20,24 @@ def step_user_reg_form_fill(context):
 @then("Verify that the correct information is present")
 def step_verify_user_reg_info(context):
     context.registration_page.verify_registration_form()
-    print("Registration form verified")
+    print("User registration verified successfully")
 
 
 # User Login
-
-@given("Open Application login page")
-def step_open_application_login_page(context):
-    context.login_page = LoginPage(context.driver)
-    context.login_page.open()
-
-@when("Enter user credentials into login page")
-def step_user_login(context):
-    context.login_page.login()
-
-@then("User should get logged in")
-def step_user_logged_in(context):
-    context.login_page.verify_user_login()
-    context.login_page.logout()
+#
+# @given("Open Application login page")
+# def step_open_application_login_page(context):
+#     context.login_page = LoginPage(context.driver)
+#     context.login_page.open()
+#
+# @when("Enter user credentials into login page")
+# def step_user_login(context):
+#     context.login_page.login()
+#
+# @then("User should get logged in")
+# def step_user_logged_in(context):
+#     context.login_page.verify_user_login()
+#     context.login_page.logout()
 
 
 

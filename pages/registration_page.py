@@ -22,17 +22,17 @@ class RegistrationPage(BasePage):
 
     def open(self):
         self.driver.get(self.url)
-        time.sleep(10)
+        time.sleep(1)
 
     def fill_registration_form(self):
-        self.input_text('test rek3 careerist',  *self.USER_NAME)
-        time.sleep(2)
-        self.input_text('+951 test careerist', *self.PHONE_NUMBER)
-        time.sleep(2)
-        self.input_text('rek3@gmail.com', *self.EMAIL)
-        time.sleep(2)
-        self.input_text('rek3password', *self.PASSWORD)
-        time.sleep(2)
+        self.input_text('test rek11 careerist',  *self.USER_NAME)
+        time.sleep(1)
+        self.input_text('+911 test careerist', *self.PHONE_NUMBER)
+        time.sleep(1)
+        self.input_text('rek11@gmail.com', *self.EMAIL)
+        time.sleep(1)
+        self.input_text('rek11password', *self.PASSWORD)
+        time.sleep(1)
         self.input_text('Test', *self.COMPANY_NAME)
         time.sleep(1)
 
@@ -52,12 +52,12 @@ class RegistrationPage(BasePage):
         time.sleep(1)
 
         self.click( *self.CREATE_ACCOUNT_BTN)
-        time.sleep(5)
+        time.sleep(10)
 
     def verify_registration_form(self):
 
         user_name_after_login = self.driver.find_element(*self.USER_NAME_AFTER_LOGIN).text
-        user_name_while_reg = "test rek3 careerist"
+        user_name_while_reg = "test rek11 careerist"
 
         assert user_name_after_login == user_name_while_reg,\
             f"Error: Expected '{user_name_after_login}' not matching with '{user_name_while_reg}'"

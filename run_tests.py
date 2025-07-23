@@ -1,8 +1,8 @@
 import sys
 from behave.__main__ import main as behave_main
 
-browser = "firefox"    # or "chrome"
-headless = "true"      # or "false"
+browser = "chrome"    # or "chrome" or "firefox"
+headless = "false"      # or "false" or "true"
 
 sys.argv = [
     "behave",
