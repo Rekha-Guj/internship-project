@@ -10,9 +10,8 @@ from selenium.webdriver.ie.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
-
+from support.logger import logger
 from app.application import Application
-
 
 def browser_init(context):
     """
@@ -42,52 +41,56 @@ def browser_init(context):
     # )
 
     ########## BrowserStack ###############
-    bs_user = 'rekhagujalwar_1xFHWX'
-    bs_key = '3xhpxhQAcUZ5NJFqJJD2'
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
 
-    options = Options()
-    bstack_options = {
-        "os" : "Windows",
-        "osVersion" : "11",
-        "browserName" : "Chrome",
-        "sessionName" : "Reelly_User_Registration",
-    }
-    options.set_capability('bstack_options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url, options=options)
-    context.driver.maximize_window()
-    context.driver.implicitly_wait(4)
-    context.driver.wait = WebDriverWait(context.driver, 10)
-    # context.app = Application(context.driver)
-    ####
-    context.app = Application()
+    # bs_user = 'rekhagujalwar_1xFHWX'
+    # bs_key = '3xhpxhQAcUZ5NJFqJJD2'
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    #
+    # options = Options()
+    # bstack_options = {
+    #     "os" : "Windows",
+    #     "osVersion" : "11",
+    #     "browserName" : "Chrome",
+    #     "sessionName" : "Reelly_User_Registration",
+    # }
+    # options.set_capability('bstack_options', bstack_options)
+    # context.driver = webdriver.Remote(command_executor=url, options=options)
+    # context.driver.maximize_window()
+    # context.driver.implicitly_wait(4)
+    # context.driver.wait = WebDriverWait(context.driver, 10)
+    # # context.app = Application(context.driver)
+    # context.app = Application()
+
 
 def before_scenario(context, scenario):
 
     print('\nStarted scenario: ', scenario.name)
+    logger.info('\nStarted scenario: {scenario.name}')
 
     ####### Chrome ########
-    # browser_init(context)
-    # context.driver = webdriver.Chrome()
+    browser_init(context)
+    context.driver = webdriver.Chrome()
 
     ####### Firefox ########
     # context.driver = webdriver.Firefox()
 
     ######## Browserstack ########
-    browser_init(context)
-    print("\nStarted scenario:", scenario.name)
-    try:
-        browser_init(context)
-    except Exception as e:
-        print(f"Error during browser initialization: {e}")
-        raise
+    # browser_init(context)
+    # print("\nStarted scenario:", scenario.name)
+    # try:
+    #     browser_init(context)
+    # except Exception as e:
+    #     print(f"Error during browser initialization: {e}")
+    #     raise
 
 def before_step(context, step):
     print('\nStarted step: ', step)
+    logger.info(f'Started step: {step}')
 
 def after_step(context, step):
     if step.status == 'failed':
         print('\nStep failed: ', step)
+        logger.error(f'Step failed: {step}')
 
 def after_scenario(context, feature):
     if hasattr(context, "driver"):

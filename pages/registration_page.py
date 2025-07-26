@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class RegistrationPage(BasePage):
 
-    url = 'https://soft.reelly.io/sign-up'
+    # url = 'https://soft.reelly.io/sign-up'
 
     USER_NAME = (By.ID, 'Full-Name')
     PHONE_NUMBER = (By.XPATH, "//input[@id='phone2']")
@@ -21,17 +21,17 @@ class RegistrationPage(BasePage):
     USER_NAME_AFTER_LOGIN = (By.XPATH, "//div[@class='name_text_account']")
 
     def open(self):
-        self.driver.get(self.url)
+        self.open_url()
         time.sleep(1)
 
     def fill_registration_form(self):
-        self.input_text('test rek12 careerist',  *self.USER_NAME)
+        self.input_text('test rek14 careerist',  *self.USER_NAME)
         time.sleep(1)
-        self.input_text('+912 test careerist', *self.PHONE_NUMBER)
+        self.input_text('+914 test careerist', *self.PHONE_NUMBER)
         time.sleep(1)
-        self.input_text('rek12@gmail.com', *self.EMAIL)
+        self.input_text('rek14@gmail.com', *self.EMAIL)
         time.sleep(1)
-        self.input_text('rek12password', *self.PASSWORD)
+        self.input_text('rek14password', *self.PASSWORD)
         time.sleep(1)
         self.input_text('Test', *self.COMPANY_NAME)
         time.sleep(1)
@@ -57,7 +57,7 @@ class RegistrationPage(BasePage):
     def verify_registration_form(self):
 
         user_name_after_login = self.driver.find_element(*self.USER_NAME_AFTER_LOGIN).text
-        user_name_while_reg = "test rek12 careerist"
+        user_name_while_reg = "test rek14 careerist"
 
         assert user_name_after_login == user_name_while_reg,\
             f"Error: Expected '{user_name_after_login}' not matching with '{user_name_while_reg}'"

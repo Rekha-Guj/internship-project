@@ -1,29 +1,41 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from sample_script import driver
 from selenium.webdriver.support import expected_conditions as EC
+from support.logger import logger
 
 class BasePage:
 
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 15)
+        self.base_url = 'https://soft.reelly.io/sign-up'
+
+    def open_url(self, end_url=''):
+        url = f'{self.base_url}{end_url}'
+        logger.info(f'Opening url: {url}')
+        self.driver.get(url)
 
     def find_element(self, *locator):
+        logger.info(f"Finding element with locator: {locator}")
         return self.driver.find_element(*locator)
 
     def click(self, *locator):
+        logger.info(f"Clicking on element with locator: {locator}")
         self.driver.find_element(*locator).click()
 
     def input_text(self, text, *locator):
+        logger.info(f"Enter '{text}' with in Locator {locator}")
         self.driver.find_element(*locator).send_keys(text)
 
     def wait_for_element_click(self, *locator):
+        logger.info(f"Waiting and clicking on element: {locator}")
         self.wait.until(
             EC.element_to_be_clickable(locator),
             message=f'Element by {locator} not clickable'
         ).click()
 
     def wait_for_element(self, *locator):
+        logger.info(f"Waiting for element: {locator}")
         self.wait.until(
             EC.visibility_of_element_located(locator),
             message=f'Element by {locator} not visible'
